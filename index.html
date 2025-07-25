@@ -1,6 +1,6 @@
-
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -8,77 +8,85 @@
     <link rel="stylesheet" href="style_login.css">
     <link rel="shortcut icon" href="assignment.png" type="image/x-icon">
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <link rel="stylesheet" href="api.php">
+    <script src="https://cdn.emailjs.com/dist/email.min.js"></script>
+    <script>
+        (function () {
+            emailjs.init("rdQ1aiscnjyl4sZE1"); // Replace with your actual Public Key
+        })();
+    </script>
+
 </head>
-  <body>
 
+<body>
     <!-- credits to the writter @leonam-silva-de-souza -->
-      <div class="container">
-          <div class="form-box login">
-              <form action="#">
-                  <h1>Login</h1>
-                  <div class="input-box">
-                      <input type="text" placeholder="Username" required>
-                      <i class='bx bxs-user'></i>
-                  </div>
-                  <div class="input-box">
-                      <input type="password" placeholder="Password" required>
-                      <i class='bx bxs-lock-alt' ></i>
-                  </div>
-                  <div class="forgot-link">
-                      <a href="#">Forgot Password?</a>
-                  </div>
-                  <button type="submit" class="btn">Login</button>
-                  <p>Or login with :</p>
-                  <div class="social-icons">
-                      <a href="https://accounts.google.com/v3/signin/identifier?continue=https%3A%2F%2Faccounts.google.com%2F&followup=https%3A%2F%2Faccounts.google.com%2F&ifkv=AdBytiOQiZWseXGh9rq2NFHED6zWdy2NSMdt104fst2CIFipgLbt6r1v-ELIYfrvw4A7RQ6CaEOLXQ&passive=1209600&flowName=GlifWebSignIn&flowEntry=ServiceLogin&dsh=S1631258419%3A1753372603269723"><i class='bx bxl-google' ></i></a>
-                      <a href="https://www.facebook.com/?_rdr"><i class='bx bxl-facebook' ></i></a>
-                      <a href="https://github.com/signup?ref_cta=Sign+up&ref_loc=header+logged+out&ref_page=%2F&source=header-home"><i class='bx bxl-github' ></i></a>
-                      <a href="https://www.linkedin.com/login?fromSignIn=true&trk=guest_homepage-basic_nav-header-signin"><i class='bx bxl-linkedin' ></i></a>
-                  </div>
-              </form>
-          </div>
+    <div class="container">
+        <div class="form-box login">
+            <form action="#" onsubmit="emailSend(); reset(); return false;">
+                <h1>Login</h1>
+                <div class="input-box">
+                    <input type="text" placeholder="Username" required>
+                    <i class='bx bxs-user'></i>
+                </div>
+                <div class="input-box">
+                    <input type="password" placeholder="Password" required>
+                    <i class='bx bxs-lock-alt'></i>
+                </div>
+                <div class="forgot-link">
+                    <a href="#">Forgot Password?</a>
+                </div>
+                <button type="submit" class="btn">Login</button>
+                <p>Or login with :</p>
+                <div class="social-icons">
+                    <a href="#"><i class='bx bxl-google'></i></a>
+                    <a href="#"><i class='bx bxl-facebook'></i></a>
+                    <a href="#"><i class='bx bxl-github'></i></a>
+                    <a href="#"><i class='bx bxl-linkedin'></i></a>
+                </div>
+            </form>
+        </div>
 
-          <div class="form-box register">
-              <form action="#">
-                  <h1>Registration</h1>
-                  <div class="input-box">
-                      <input type="text" placeholder="Username" required>
-                      <i class='bx bxs-user'></i>
-                  </div>
-                  <div class="input-box">
-                      <input type="email" placeholder="Email" required>
-                      <i class='bx bxs-envelope' ></i>
-                  </div>
-                  <div class="input-box">
-                      <input type="password" placeholder="Password" required>
-                      <i class='bx bxs-lock-alt' ></i>
-                  </div>
-                  <button type="submit" class="btn">Register</button>
-                  <p>Or register with :</p>
-                  <div class="social-icons">
-                      <a href="#"><i class='bx bxl-google' ></i></a>
-                      <a href="#"><i class='bx bxl-facebook' ></i></a>
-                      <a href="#"><i class='bx bxl-github' ></i></a>
-                      <a href="#"><i class='bx bxl-linkedin' ></i></a>
-                  </div>
-              </form>
-          </div>
+        <div class="form-box register">
+            <form action="#" onsubmit="emailSend(); reset(); return false;">
+                <h1>Registration</h1>
+                <div class="input-box">
+                    <input type="text" placeholder="Username" required>
+                    <i class='bx bxs-user'></i>
+                </div>
+                <div class="input-box">
+                    <input type="email" placeholder="Email" required>
+                    <i class='bx bxs-envelope'></i>
+                </div>
+                <div class="input-box">
+                    <input type="password" placeholder="Password" required>
+                    <i class='bx bxs-lock-alt'></i>
+                </div>
+                <button type="submit" class="btn">Register</button>
+                <p>Or register with :</p>
+                <div class="social-icons">
+                    <a href="#"><i class='bx bxl-google'></i></a>
+                    <a href="#"><i class='bx bxl-facebook'></i></a>
+                    <a href="#"><i class='bx bxl-github'></i></a>
+                    <a href="#"><i class='bx bxl-linkedin'></i></a>
+                </div>
+            </form>
+        </div>
 
-          <div class="toggle-box">
-              <div class="toggle-panel toggle-left">
-                  <h1>Hello, Welcome in Quizzo!</h1>
-                  <p>Don't have an account?</p>
-                  <button class="btn register-btn">Register</button>
-              </div>
+        <div class="toggle-box">
+            <div class="toggle-panel toggle-left">
+                <h1>Hello, Welcome in Quizzo!</h1>
+                <p>Don't have an account?</p>
+                <button class="btn register-btn">Register</button>
+            </div>
 
-              <div class="toggle-panel toggle-right">
-                  <h1>Welcome Back!</h1>
-                  <p>Already have an account?</p>
-                  <button class="btn login-btn">Login</button>
-              </div>
-          </div>
-      </div>
+            <div class="toggle-panel toggle-right">
+                <h1>Welcome Back!</h1>
+                <p>Already have an account?</p>
+                <button class="btn login-btn">Login</button>
+            </div>
+        </div>
+    </div>
+    <script src="script.js"></script>
+</body>
 
-      <script src="script.js"></script>
-  </body>
 </html>
