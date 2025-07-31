@@ -224,3 +224,25 @@ body {
   margin-bottom: 2rem;
   box-shadow: 0 0 10px rgba(236, 116, 116, 0.3);
 }
+
+.retry-btn {
+  display: inline-block;
+  margin-top: 1.5rem;
+  padding: 0.8rem 1.8rem;
+  font-size: 1.1rem;
+  font-weight: bold;
+  color: #fff;
+  background-color: #ec7474;
+  border: none;
+  border-radius: 12px;
+  cursor: pointer;
+  box-shadow: 0 6px 15px rgba(236, 116, 116, 0.4);
+  transition: all 0.3s ease;
+  letter-spacing: 0.5px;
+}
+
+.retry-btn:hover {
+  background-color: #e04444;
+  transform: scale(1.05);
+  box-shadow: 0 8px 18px rgba(236, 116, 116, 0.6);
+}
