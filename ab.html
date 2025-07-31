@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Quizzo PYQ</title>
+  <link rel="stylesheet" href="ab.css" />
+  <link rel="shortcut icon" href="assignment.png" type="image/x-icon">
+</head>
+
+<body>
+  <div class="quiz-container">
+    <header>
+      <div class="quiz-header">
+        <span id="questionCount">Q1</span>
+        <span class="timer" id="timer">⏱ 00:00</span>
+      </div>
+      <h2 class="quiz-title">Image Quiz • JEE Mock</h2>
+    </header>
+
+    <main id="quizMain">
+      <div id="questionImageContainer" class="image-container">
+        <img id="questionImage" src="" alt="Question Image" />
+      </div>
+
+      <div class="options" id="options"></div>
+      <div id="result" class="result"></div>
+      <div class="controls">
+        <button id="prevBtn">⬅ Prev</button>
+        <button id="checkBtn">Check Answer</button>
+        <button id="nextBtn">Next ➡</button>
+      </div>
+    </main>
+
+    <section id="summary" class="summary" style="display: none;">
+      <h2>Quiz Summary</h2>
+      <div id="summaryContent"></div>
+      <div class="score" id="finalScore"></div>
+      <button id="retryBtn" class="retry-btn">🔁 Retry Quiz</button>
+    </section>
+  </div>
+
+  <script src="ab.js"></script>
+</body>
+
+</html>
