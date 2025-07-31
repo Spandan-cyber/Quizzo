@@ -192,15 +192,25 @@ document.getElementById("markReviewBtn").onclick = () => {
   updateQuestionGrid();
 };
 
-document.getElementById("clearBtn").onclick = () => {
-  selectedAnswer = null;
-  userAnswers[currentIndex] = null;
+document.addEventListener("DOMContentLoaded", () => {
+  document.getElementById("clearBtn").addEventListener("click", () => {
+    // Don't allow clearing after checking
+    if (answered[currentIndex]) return;
 
-  const optionButtons = document.querySelectorAll(".options button");
-  optionButtons.forEach(b => b.classList.remove("selected"));
+    selectedAnswer = null;
+    userAnswers[currentIndex] = null;
 
-  document.getElementById("result").textContent = "";
-};
+    const optionButtons = document.querySelectorAll(".options button");
+    optionButtons.forEach(b => b.classList.remove("selected"));
+
+    document.getElementById("result").textContent = "";
+    updateQuestionGrid();
+  });
+});
 
 
-window.onload = loadQuestion;
+
+document.addEventListener("DOMContentLoaded", () => {
+  loadQuestion();
+});
+
