@@ -27,137 +27,169 @@ let currentIndex = 0;
 let selectedAnswer = null;
 let userAnswers = new Array(questions.length).fill(null);
 let answered = new Array(questions.length).fill(false);
-let score = 0;
+let markedForReview = new Array(questions.length).fill(false);
 let perQuestionTime = new Array(questions.length).fill(0);
 let timerInterval;
+let score = 0;
 
 function startTimer() {
-  const timer = document.getElementById("timer");
   clearInterval(timerInterval);
   timerInterval = setInterval(() => {
     perQuestionTime[currentIndex]++;
-    const time = perQuestionTime[currentIndex];
-    const minutes = String(Math.floor(time / 60)).padStart(2, "0");
-    const seconds = String(time % 60).padStart(2, "0");
-    timer.textContent = `⏱ ${minutes}:${seconds}`;
+    updateTimer();
   }, 1000);
 }
 
-function loadQuestion() {
-  clearInterval(timerInterval);
-  startTimer();
+function updateTimer() {
+  const seconds = perQuestionTime[currentIndex];
+  const min = String(Math.floor(seconds / 60)).padStart(2, '0');
+  const sec = String(seconds % 60).padStart(2, '0');
+  document.getElementById("timer").textContent = `⏱ ${min}:${sec}`;
+}
 
+function loadQuestion() {
   const q = questions[currentIndex];
+  selectedAnswer = userAnswers[currentIndex];
+
   document.getElementById("questionCount").textContent = `Q${currentIndex + 1}`;
   document.getElementById("questionImage").src = q.image;
 
   const optionsDiv = document.getElementById("options");
-  const resultDiv = document.getElementById("result");
-
   optionsDiv.innerHTML = "";
-  resultDiv.textContent = "";
-  selectedAnswer = userAnswers[currentIndex];
+  document.getElementById("result").textContent = "";
 
-  q.options.forEach((opt) => {
+  q.options.forEach(opt => {
     const btn = document.createElement("button");
     btn.innerHTML = `<strong>${opt.label}</strong>: ${opt.text}`;
-    if (selectedAnswer === opt.label) btn.classList.add("selected");
-    if (answered[currentIndex]) btn.disabled = true;
-
-    btn.onclick = () => {
-      if (answered[currentIndex]) return;
-      selectedAnswer = opt.label;
-      document.querySelectorAll(".options button").forEach((b) => b.classList.remove("selected"));
+    if (selectedAnswer === opt.label) {
       btn.classList.add("selected");
+    }
+    btn.onclick = () => {
+      if (!answered[currentIndex]) {
+        selectedAnswer = opt.label;
+        userAnswers[currentIndex] = selectedAnswer;
+        document.querySelectorAll(".options button").forEach(b => b.classList.remove("selected"));
+        btn.classList.add("selected");
+      }
     };
-
     optionsDiv.appendChild(btn);
   });
+
+  updateTimer();
+  startTimer();
+  updateQuestionGrid();
 }
 
 function checkAnswer() {
-  const resultDiv = document.getElementById("result");
-  if (!selectedAnswer) {
-    resultDiv.textContent = "Please select an option.";
-    resultDiv.style.color = "#ff9800";
+  if (selectedAnswer === null) {
+    alert("Please select an option first.");
     return;
   }
-  if (answered[currentIndex]) return;
 
-  const correct = questions[currentIndex].answer;
-  userAnswers[currentIndex] = selectedAnswer;
   answered[currentIndex] = true;
+  clearInterval(timerInterval);
+
+  const resultDiv = document.getElementById("result");
+  const correct = questions[currentIndex].answer;
 
   if (selectedAnswer === correct) {
     score++;
-    resultDiv.textContent = "Correct! ✅";
-    resultDiv.style.color = "#4caf50";
+    resultDiv.textContent = "✅ Correct!";
+    resultDiv.style.color = "green";
   } else {
-    resultDiv.textContent = `Wrong! ❌ Correct answer: ${correct}`;
-    resultDiv.style.color = "#f44336";
+    resultDiv.textContent = `❌ Incorrect! Correct: ${correct}`;
+    resultDiv.style.color = "red";
   }
 
-  document.querySelectorAll(".options button").forEach(btn => btn.disabled = true);
+  updateQuestionGrid();
+}
+
+function updateQuestionGrid() {
+  const grid = document.getElementById("questionGrid");
+  grid.innerHTML = "";
+  questions.forEach((_, i) => {
+    const btn = document.createElement("button");
+    btn.textContent = i + 1;
+
+    if (answered[i]) btn.classList.add("answered");
+    if (markedForReview[i]) btn.classList.add("marked");
+    if (i === currentIndex) btn.classList.add("selected");
+
+    btn.onclick = () => {
+      currentIndex = i;
+      loadQuestion();
+    };
+
+    grid.appendChild(btn);
+  });
+}
+
+function showSubmitPage() {
+  clearInterval(timerInterval);
+  document.getElementById("quizMain").style.display = "none";
+  document.getElementById("submitPage").style.display = "block";
+}
+
+function goBackFromSubmit() {
+  document.getElementById("submitPage").style.display = "none";
+  document.getElementById("quizMain").style.display = "block";
+  loadQuestion();
 }
 
 function showSummary() {
-  document.getElementById("quizMain").style.display = "none";
-  document.getElementById("summary").style.display = "block";
   clearInterval(timerInterval);
+  document.getElementById("submitPage").style.display = "none";
+  document.getElementById("summary").style.display = "block";
+
+  const totalSeconds = perQuestionTime.reduce((a, b) => a + b, 0);
+  const totalMin = String(Math.floor(totalSeconds / 60)).padStart(2, '0');
+  const totalSec = String(totalSeconds % 60).padStart(2, '0');
+  document.getElementById("timer").textContent = `⏱ Total Time: ${totalMin}:${totalSec}`;
+  document.getElementById("finalScore").textContent = `✅ You scored ${score} / ${questions.length} | ⏱ Total Time: ${totalMin}:${totalSec}`;
 
   const summaryDiv = document.getElementById("summaryContent");
-  const finalScore = document.getElementById("finalScore");
-
   summaryDiv.innerHTML = "";
-  questions.forEach((q, index) => {
-    const minutes = String(Math.floor(perQuestionTime[index] / 60)).padStart(2, "0");
-    const seconds = String(perQuestionTime[index] % 60).padStart(2, "0");
 
+  questions.forEach((q, idx) => {
+    const time = perQuestionTime[idx];
+    const min = String(Math.floor(time / 60)).padStart(2, '0');
+    const sec = String(time % 60).padStart(2, '0');
     const div = document.createElement("div");
-    div.classList.add("summary-item");
     div.innerHTML = `
-      <p><strong>Q${index + 1}</strong> (🕒 ${minutes}:${seconds})</p>
-      <img src="${q.image}" style="max-width: 100%; border-radius: 8px; border: 1px solid #444; margin-bottom: 0.5rem;" />
-      <p>Your Answer: <strong>${userAnswers[index] || "Not Answered"}</strong></p>
-      <p>Correct Answer: <strong>${q.answer}</strong></p>
+      <h3>Q${idx + 1} ⏱ (${min}:${sec})</h3>
+      <img src="${q.image}" alt="Q${idx + 1}" style="max-width:100%;border:1px solid #aaa; border-radius:5px;">
+      <p>Your Answer: ${userAnswers[idx] || "Not Answered"}</p>
+      <p>Correct Answer: ${q.answer}</p>
       <hr/>
     `;
     summaryDiv.appendChild(div);
   });
-
-  finalScore.textContent = `✅ You scored ${score} / ${questions.length}`;
 }
 
-window.onload = () => {
-  loadQuestion();
+function retryQuiz() {
+  location.reload();
+}
 
-  document.getElementById("checkBtn").onclick = checkAnswer;
-  document.getElementById("nextBtn").onclick = () => {
-    if (currentIndex < questions.length - 1) {
-      currentIndex++;
-      loadQuestion();
-    } else {
-      showSummary();
-    }
-  };
-
-  document.getElementById("prevBtn").onclick = () => {
-    if (currentIndex > 0) {
-      currentIndex--;
-      loadQuestion();
-    }
-  };
-
-  document.getElementById("retryBtn").onclick = () => {
-    currentIndex = 0;
-    score = 0;
-    selectedAnswer = null;
-    answered = new Array(questions.length).fill(false);
-    userAnswers = new Array(questions.length).fill(null);
-    perQuestionTime = new Array(questions.length).fill(0);
-    clearInterval(timerInterval);
-    document.getElementById("summary").style.display = "none";
-    document.getElementById("quizMain").style.display = "block";
+document.getElementById("nextBtn").onclick = () => {
+  if (currentIndex < questions.length - 1) {
+    currentIndex++;
     loadQuestion();
-  };
+  } else {
+    showSubmitPage();
+  }
 };
+
+document.getElementById("prevBtn").onclick = () => {
+  if (currentIndex > 0) {
+    currentIndex--;
+    loadQuestion();
+  }
+};
+
+document.getElementById("checkBtn").onclick = checkAnswer;
+document.getElementById("markReviewBtn").onclick = () => {
+  markedForReview[currentIndex] = !markedForReview[currentIndex];
+  updateQuestionGrid();
+};
+
+window.onload = loadQuestion;
