@@ -192,4 +192,15 @@ document.getElementById("markReviewBtn").onclick = () => {
   updateQuestionGrid();
 };
 
+document.getElementById("clearBtn").onclick = () => {
+  selectedAnswer = null;
+  userAnswers[currentIndex] = null;
+
+  const optionButtons = document.querySelectorAll(".options button");
+  optionButtons.forEach(b => b.classList.remove("selected"));
+
+  document.getElementById("result").textContent = "";
+};
+
+
 window.onload = loadQuestion;

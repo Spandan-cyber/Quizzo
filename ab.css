@@ -309,3 +309,12 @@ body {
     height: auto;
   }
 }
+
+#clearBtn {
+  background-color: #ffe0e0;
+  color: #333;
+}
+
+#clearBtn:hover {
+  background-color: #fdd4d4;
+}
