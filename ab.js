@@ -6,9 +6,9 @@ const questions = [
       { label: "A", text: "Option A" },
       { label: "B", text: "Option B" },
       { label: "C", text: "Option C" },
-      { label: "D", text: "Option D" }
+      { label: "D", text: "Option D" },
     ],
-    answer: "C"
+    answer: "C",
   },
   {
     id: 2,
@@ -17,9 +17,9 @@ const questions = [
       { label: "A", text: "Option A" },
       { label: "B", text: "Option B" },
       { label: "C", text: "Option C" },
-      { label: "D", text: "Option D" }
+      { label: "D", text: "Option D" },
     ],
-    answer: "B"
+    answer: "B",
   },
   {
     id: 3,
@@ -28,9 +28,9 @@ const questions = [
       { label: "A", text: "Option A" },
       { label: "B", text: "Option B" },
       { label: "C", text: "Option C" },
-      { label: "D", text: "Option D" }
+      { label: "D", text: "Option D" },
     ],
-    answer: "2"
+    answer: "2",
   },
   {
     id: 4,
@@ -39,9 +39,9 @@ const questions = [
       { label: "A", text: "Option A" },
       { label: "B", text: "Option B" },
       { label: "C", text: "Option C" },
-      { label: "D", text: "Option D" }
+      { label: "D", text: "Option D" },
     ],
-    answer: "B"
+    answer: "B",
   },
   {
     id: 5,
@@ -50,11 +50,10 @@ const questions = [
       { label: "A", text: "Option A" },
       { label: "B", text: "Option B" },
       { label: "C", text: "Option C" },
-      { label: "D", text: "Option D" }
+      { label: "D", text: "Option D" },
     ],
-    answer: "C"
+    answer: "C",
   },
-
 ];
 
 let currentIndex = 0;
@@ -76,8 +75,8 @@ function startTimer() {
 
 function updateTimer() {
   const seconds = perQuestionTime[currentIndex];
-  const min = String(Math.floor(seconds / 60)).padStart(2, '0');
-  const sec = String(seconds % 60).padStart(2, '0');
+  const min = String(Math.floor(seconds / 60)).padStart(2, "0");
+  const sec = String(seconds % 60).padStart(2, "0");
   document.getElementById("timer").textContent = `⏱ ${min}:${sec}`;
 }
 
@@ -86,13 +85,30 @@ function loadQuestion() {
   selectedAnswer = userAnswers[currentIndex];
 
   document.getElementById("questionCount").textContent = `Q${currentIndex + 1}`;
-  document.getElementById("questionImage").src = q.image;
+  const imageContainer = document.querySelector(".image-container");
+  imageContainer.innerHTML = ""; // Clear previous content
+
+  const imageWrapper = document.createElement("div");
+  imageWrapper.className = "image-wrapper";
+
+  const img = document.createElement("img");
+  img.src = q.image;
+  imageWrapper.appendChild(img);
+
+  const zoomBtn = document.createElement("button");
+  zoomBtn.textContent = "🔍";
+  zoomBtn.className = "zoom-button";
+  zoomBtn.title = "Click to enlarge image";
+  zoomBtn.onclick = openModal;
+
+  imageWrapper.appendChild(zoomBtn);
+  imageContainer.appendChild(imageWrapper);
 
   const optionsDiv = document.getElementById("options");
   optionsDiv.innerHTML = "";
   document.getElementById("result").textContent = "";
 
-  q.options.forEach(opt => {
+  q.options.forEach((opt) => {
     const btn = document.createElement("button");
     btn.innerHTML = `<strong>${opt.label}</strong>: ${opt.text}`;
     if (selectedAnswer === opt.label) {
@@ -102,7 +118,9 @@ function loadQuestion() {
       if (!answered[currentIndex]) {
         selectedAnswer = opt.label;
         userAnswers[currentIndex] = selectedAnswer;
-        document.querySelectorAll(".options button").forEach(b => b.classList.remove("selected"));
+        document
+          .querySelectorAll(".options button")
+          .forEach((b) => b.classList.remove("selected"));
         btn.classList.add("selected");
       }
     };
@@ -138,7 +156,6 @@ function checkAnswer() {
   updateQuestionGrid();
 }
 
-
 function updateQuestionGrid() {
   const grid = document.getElementById("questionGrid");
   grid.innerHTML = "";
@@ -167,8 +184,6 @@ function updateQuestionGrid() {
   });
 }
 
-
-
 function showSubmitPage() {
   clearInterval(timerInterval);
   document.getElementById("quizMain").style.display = "none";
@@ -187,27 +202,35 @@ function showSummary() {
   document.getElementById("summary").style.display = "block";
 
   const totalSeconds = perQuestionTime.reduce((a, b) => a + b, 0);
-  const totalMin = String(Math.floor(totalSeconds / 60)).padStart(2, '0');
-  const totalSec = String(totalSeconds % 60).padStart(2, '0');
-  document.getElementById("timer").textContent = `⏱ Total Time: ${totalMin}:${totalSec}`;
-  document.getElementById("finalScore").textContent = `✅ You scored ${score} / ${questions.length} | ⏱ Total Time: ${totalMin}:${totalSec}`;
+  const totalMin = String(Math.floor(totalSeconds / 60)).padStart(2, "0");
+  const totalSec = String(totalSeconds % 60).padStart(2, "0");
+  document.getElementById(
+    "timer"
+  ).textContent = `⏱ Total Time: ${totalMin}:${totalSec}`;
+  document.getElementById(
+    "finalScore"
+  ).textContent = `✅ You scored ${score} / ${questions.length} | ⏱ Total Time: ${totalMin}:${totalSec}`;
 
   const summaryDiv = document.getElementById("summaryContent");
   summaryDiv.innerHTML = "";
 
   questions.forEach((q, idx) => {
     const time = perQuestionTime[idx];
-    const min = String(Math.floor(time / 60)).padStart(2, '0');
-    const sec = String(time % 60).padStart(2, '0');
+    const min = String(Math.floor(time / 60)).padStart(2, "0");
+    const sec = String(time % 60).padStart(2, "0");
     const userAns = userAnswers[idx] || "Not Answered";
     const isCorrect = userAnswers[idx] === q.answer;
 
     const div = document.createElement("div");
     div.innerHTML = `
       <h3>Q${idx + 1} ⏱ (${min}:${sec})</h3>
-      <img src="${q.image}" alt="Q${idx + 1}" style="max-width:100%;border:1px solid #aaa; border-radius:5px;">
+      <img src="${q.image}" alt="Q${
+      idx + 1
+    }" style="max-width:100%;border:1px solid #aaa; border-radius:5px;">
       <p><strong>Your Answer:</strong> 
-        <span class="${isCorrect ? 'correct-text' : 'wrong-text'}">${userAns}</span>
+        <span class="${
+          isCorrect ? "correct-text" : "wrong-text"
+        }">${userAns}</span>
       </p>
       <p><strong>Correct Answer:</strong> 
         <span class="correct-text">${q.answer}</span>
@@ -217,7 +240,6 @@ function showSummary() {
     summaryDiv.appendChild(div);
   });
 }
-
 
 function retryQuiz() {
   location.reload();
@@ -250,7 +272,6 @@ document.getElementById("markReviewBtn").onclick = () => {
   updateQuestionGrid();
 };
 
-
 document.addEventListener("DOMContentLoaded", () => {
   document.getElementById("clearBtn").addEventListener("click", () => {
     // Don't allow clearing after checking
@@ -260,16 +281,36 @@ document.addEventListener("DOMContentLoaded", () => {
     userAnswers[currentIndex] = null;
 
     const optionButtons = document.querySelectorAll(".options button");
-    optionButtons.forEach(b => b.classList.remove("selected"));
+    optionButtons.forEach((b) => b.classList.remove("selected"));
 
     document.getElementById("result").textContent = "";
     updateQuestionGrid();
   });
 });
 
+function openModal() {
+  const modal = document.getElementById("imageModal");
+  const enlargedImg = document.getElementById("enlargedImg");
+  const q = questions[currentIndex];
+  enlargedImg.src = q.image;
+  modal.style.display = "block";
+}
 
+function closeModal() {
+  document.getElementById("imageModal").style.display = "none";
+}
+
+function openModal() {
+  const modal = document.getElementById("imageModal");
+  const enlargedImg = document.getElementById("enlargedImg");
+  enlargedImg.src = questions[currentIndex].image;
+  modal.style.display = "block";
+}
+
+function closeModal() {
+  document.getElementById("imageModal").style.display = "none";
+}
 
 document.addEventListener("DOMContentLoaded", () => {
   loadQuestion();
 });
-
