@@ -311,6 +311,22 @@ function closeModal() {
   document.getElementById("imageModal").style.display = "none";
 }
 
+
+let isZoomed = false;
+
+document.getElementById("enlargedImg").addEventListener("click", function () {
+  if (!isZoomed) {
+    this.style.transform = "scale(1.8)";
+    this.style.cursor = "zoom-out";
+    isZoomed = true;
+  } else {
+    this.style.transform = "scale(1)";
+    this.style.cursor = "zoom-in";
+    isZoomed = false;
+  }
+});
+
+
 document.addEventListener("DOMContentLoaded", () => {
   loadQuestion();
 });

@@ -460,8 +460,20 @@ body {
   to { opacity: 1; }
 }
 .modal-content {
+  margin: auto;
+  display: block;
+  max-width: 90%;
+  max-height: 80vh;
+  border-radius: 10px;
+  border: 3px solid white;
+  box-shadow: 0 0 25px rgba(0,0,0,0.5);
   cursor: zoom-out;
+  touch-action: pan-y pinch-zoom;
+  -webkit-user-drag: none;
+  -webkit-touch-callout: none;
+  transition: transform 0.3s ease;
 }
+
 
 
 .image-wrapper {
