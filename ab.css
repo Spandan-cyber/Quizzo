@@ -81,21 +81,6 @@ body {
   transition: background 0.3s;
 }
 
-.zoom-button {
-  margin-top: 10px;
-  background-color: #ec7474;
-  color: white;
-  border: none;
-  padding: 0.5rem 1rem;
-  border-radius: 8px;
-  cursor: pointer;
-  font-weight: bold;
-  transition: background-color 0.3s;
-}
-
-.zoom-button:hover {
-  background-color: #da5f5f;
-}
 
 
 #checkBtn, #nextBtn, #prevBtn, #retryBtn {

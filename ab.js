@@ -300,16 +300,6 @@ function closeModal() {
   document.getElementById("imageModal").style.display = "none";
 }
 
-function openModal() {
-  const modal = document.getElementById("imageModal");
-  const enlargedImg = document.getElementById("enlargedImg");
-  enlargedImg.src = questions[currentIndex].image;
-  modal.style.display = "block";
-}
-
-function closeModal() {
-  document.getElementById("imageModal").style.display = "none";
-}
 
 
 let isZoomed = false;
