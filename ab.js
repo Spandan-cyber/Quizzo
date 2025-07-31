@@ -8,19 +8,53 @@ const questions = [
       { label: "C", text: "Option C" },
       { label: "D", text: "Option D" }
     ],
-    answer: "B"
+    answer: "C"
   },
   {
     id: 2,
     image: "q2.png",
     options: [
-      { label: "A", text: "Option A2" },
-      { label: "B", text: "Option B2" },
-      { label: "C", text: "Option C2" },
-      { label: "D", text: "Option D2" }
+      { label: "A", text: "Option A" },
+      { label: "B", text: "Option B" },
+      { label: "C", text: "Option C" },
+      { label: "D", text: "Option D" }
     ],
-    answer: "D"
-  }
+    answer: "B"
+  },
+  {
+    id: 3,
+    image: "q3.png",
+    options: [
+      { label: "A", text: "Option A" },
+      { label: "B", text: "Option B" },
+      { label: "C", text: "Option C" },
+      { label: "D", text: "Option D" }
+    ],
+    answer: "2"
+  },
+  {
+    id: 4,
+    image: "q4.png",
+    options: [
+      { label: "A", text: "Option A" },
+      { label: "B", text: "Option B" },
+      { label: "C", text: "Option C" },
+      { label: "D", text: "Option D" }
+    ],
+    answer: "B"
+  },
+  {
+    id: 5,
+    image: "q5.png",
+    options: [
+      { label: "A", text: "Option A" },
+      { label: "B", text: "Option B" },
+      { label: "C", text: "Option C" },
+      { label: "D", text: "Option D" }
+    ],
+    answer: "C"
+  },
+
 ];
 
 let currentIndex = 0;
@@ -95,24 +129,33 @@ function checkAnswer() {
   if (selectedAnswer === correct) {
     score++;
     resultDiv.textContent = "✅ Correct!";
-    resultDiv.style.color = "green";
+    resultDiv.className = "result correct-answer";
   } else {
     resultDiv.textContent = `❌ Incorrect! Correct: ${correct}`;
-    resultDiv.style.color = "red";
+    resultDiv.className = "result wrong-answer";
   }
 
   updateQuestionGrid();
 }
 
+
 function updateQuestionGrid() {
   const grid = document.getElementById("questionGrid");
   grid.innerHTML = "";
-  questions.forEach((_, i) => {
+
+  questions.forEach((q, i) => {
     const btn = document.createElement("button");
     btn.textContent = i + 1;
 
-    if (answered[i]) btn.classList.add("answered");
-    if (markedForReview[i]) btn.classList.add("marked");
+    if (answered[i]) {
+      if (userAnswers[i] === questions[i].answer) {
+        btn.classList.add("answered", "flash-green");
+      } else {
+        btn.classList.add("wrong");
+      }
+    }
+
+    if (markedForReview[i]) btn.classList.add("marked", "pulse-purple");
     if (i === currentIndex) btn.classList.add("selected");
 
     btn.onclick = () => {
@@ -123,6 +166,8 @@ function updateQuestionGrid() {
     grid.appendChild(btn);
   });
 }
+
+
 
 function showSubmitPage() {
   clearInterval(timerInterval);
@@ -189,8 +234,14 @@ document.getElementById("prevBtn").onclick = () => {
 document.getElementById("checkBtn").onclick = checkAnswer;
 document.getElementById("markReviewBtn").onclick = () => {
   markedForReview[currentIndex] = !markedForReview[currentIndex];
+  const btn = document.getElementById("markReviewBtn");
+
+  btn.classList.add("pulse-purple");
+  setTimeout(() => btn.classList.remove("pulse-purple"), 1000);
+
   updateQuestionGrid();
 };
+
 
 document.addEventListener("DOMContentLoaded", () => {
   document.getElementById("clearBtn").addEventListener("click", () => {
