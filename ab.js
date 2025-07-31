@@ -199,17 +199,25 @@ function showSummary() {
     const time = perQuestionTime[idx];
     const min = String(Math.floor(time / 60)).padStart(2, '0');
     const sec = String(time % 60).padStart(2, '0');
+    const userAns = userAnswers[idx] || "Not Answered";
+    const isCorrect = userAnswers[idx] === q.answer;
+
     const div = document.createElement("div");
     div.innerHTML = `
       <h3>Q${idx + 1} ⏱ (${min}:${sec})</h3>
       <img src="${q.image}" alt="Q${idx + 1}" style="max-width:100%;border:1px solid #aaa; border-radius:5px;">
-      <p>Your Answer: ${userAnswers[idx] || "Not Answered"}</p>
-      <p>Correct Answer: ${q.answer}</p>
+      <p><strong>Your Answer:</strong> 
+        <span class="${isCorrect ? 'correct-text' : 'wrong-text'}">${userAns}</span>
+      </p>
+      <p><strong>Correct Answer:</strong> 
+        <span class="correct-text">${q.answer}</span>
+      </p>
       <hr/>
     `;
     summaryDiv.appendChild(div);
   });
 }
+
 
 function retryQuiz() {
   location.reload();

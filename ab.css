@@ -382,3 +382,15 @@ body {
   50% { background-color: #ff8a8a; transform: scale(1.1); }
   100% { background-color: #ff6b6b; transform: scale(1); }
 }
+
+.correct-text {
+  color: #2ecc71;
+  font-weight: bold;
+  font-size: 1.1rem;
+}
+
+.wrong-text {
+  color: #e74c3c;
+  font-weight: bold;
+  font-size: 1.1rem;
+}
