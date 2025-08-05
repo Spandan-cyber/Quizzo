@@ -484,3 +484,49 @@ transition: background-color 0.3s ease;
 .zoom-button:hover {
 background-color: #da5f5f;
 }
+
+
+/* 🔧 Mobile Button Adjustments */
+@media screen and (max-width: 600px) {
+  .controls button {
+    width: 45px;
+    height: 45px;
+    padding: 0;
+    font-size: 20px;
+    border-radius: 50%;
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #ec7474;
+    color: white;
+    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.2);
+  }
+
+  .controls button:hover {
+    background-color: #da5f5f;
+  }
+
+  /* Replace text with icons only */
+  #prevBtn::before { content: "⏮"; }
+  #nextBtn::before { content: "⏭"; }
+  #checkBtn::before { content: "✔"; }
+  #markReviewBtn::before { content: "🔖"; }
+  #clearBtn::before { content: "🧹"; }
+
+  /* Hide the original text */
+  #prevBtn,
+  #nextBtn,
+  #checkBtn,
+  #markReviewBtn,
+  #clearBtn {
+    font-size: 0;
+  }
+
+  #prevBtn::before,
+  #nextBtn::before,
+  #checkBtn::before,
+  #markReviewBtn::before,
+  #clearBtn::before {
+    font-size: 22px;
+  }
+}
