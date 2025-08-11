@@ -1,7 +1,18 @@
 const questions = [
   {
     id: 1,
-    image: "q1.png",
+    image: "PYQ/q(1).png",
+    options: [
+      { label: "A", text: "Option A" },
+      { label: "B", text: "Option B" },
+      { label: "C", text: "Option C" },
+      { label: "D", text: "Option D" },
+    ],
+    answer: "B",
+  },
+  {
+    id: 2,
+    image: "PYQ/q(2).png",
     options: [
       { label: "A", text: "Option A" },
       { label: "B", text: "Option B" },
@@ -11,30 +22,41 @@ const questions = [
     answer: "C",
   },
   {
-    id: 2,
-    image: "q2.png",
-    options: [
-      { label: "A", text: "Option A" },
-      { label: "B", text: "Option B" },
-      { label: "C", text: "Option C" },
-      { label: "D", text: "Option D" },
-    ],
-    answer: "B",
-  },
-  {
     id: 3,
-    image: "q3.png",
+    image: "PYQ/q(3).png",
     options: [
       { label: "A", text: "Option A" },
       { label: "B", text: "Option B" },
       { label: "C", text: "Option C" },
       { label: "D", text: "Option D" },
     ],
-    answer: "2",
+    answer: "A",
   },
   {
     id: 4,
-    image: "q4.png",
+    image: "PYQ/q(4).png",
+    options: [
+      { label: "A", text: "Option A" },
+      { label: "B", text: "Option B" },
+      { label: "C", text: "Option C" },
+      { label: "D", text: "Option D" },
+    ],
+    answer: "A",
+  },
+  {
+    id: 5,
+    image: "PYQ/q(5).png",
+    options: [
+      { label: "A", text: "Option A" },
+      { label: "B", text: "Option B" },
+      { label: "C", text: "Option C" },
+      { label: "D", text: "Option D" },
+    ],
+    answer: "C",
+  },
+  {
+    id: 6,
+    image: "PYQ/q(6).png",
     options: [
       { label: "A", text: "Option A" },
       { label: "B", text: "Option B" },
@@ -44,8 +66,404 @@ const questions = [
     answer: "B",
   },
   {
-    id: 5,
-    image: "q5.png",
+    id: 7,
+    image: "PYQ/q(7).png",
+    options: [
+      { label: "A", text: "Option A" },
+      { label: "B", text: "Option B" },
+      { label: "C", text: "Option C" },
+      { label: "D", text: "Option D" },
+    ],
+    answer: "A",
+  },
+  {
+    id: 8,
+    image: "PYQ/q(8).png",
+    options: [
+      { label: "A", text: "Option A" },
+      { label: "B", text: "Option B" },
+      { label: "C", text: "Option C" },
+      { label: "D", text: "Option D" },
+    ],
+    answer: "D",
+  },
+  {
+    id: 9,
+    image: "PYQ/q(9).png",
+    options: [
+      { label: "A", text: "Option A" },
+      { label: "B", text: "Option B" },
+      { label: "C", text: "Option C" },
+      { label: "D", text: "Option D" },
+    ],
+    answer: "B",
+  },
+  {
+    id: 10,
+    image: "PYQ/q(10).png",
+    options: [
+      { label: "A", text: "Option A" },
+      { label: "B", text: "Option B" },
+      { label: "C", text: "Option C" },
+      { label: "D", text: "Option D" },
+    ],
+    answer: "A",
+  },
+  {
+    id: 11,
+    image: "PYQ/q(11).png",
+    options: [
+      { label: "A", text: "Option A" },
+      { label: "B", text: "Option B" },
+      { label: "C", text: "Option C" },
+      { label: "D", text: "Option D" },
+    ],
+    answer: "C",
+  },
+  {
+    id: 12,
+    image: "PYQ/q(12).png",
+    options: [
+      { label: "A", text: "Option A" },
+      { label: "B", text: "Option B" },
+      { label: "C", text: "Option C" },
+      { label: "D", text: "Option D" },
+    ],
+    answer: "D",
+  },
+  {
+    id: 13,
+    image: "PYQ/q(13).png",
+    options: [
+      { label: "A", text: "Option A" },
+      { label: "B", text: "Option B" },
+      { label: "C", text: "Option C" },
+      { label: "D", text: "Option D" },
+    ],
+    answer: "B",
+  },
+  {
+    id: 14,
+    image: "PYQ/q(14).png",
+    options: [
+      { label: "A", text: "Option A" },
+      { label: "B", text: "Option B" },
+      { label: "C", text: "Option C" },
+      { label: "D", text: "Option D" },
+    ],
+    answer: "C",
+  },
+  {
+    id: 15,
+    image: "PYQ/q(15).png",
+    options: [
+      { label: "A", text: "Option A" },
+      { label: "B", text: "Option B" },
+      { label: "C", text: "Option C" },
+      { label: "D", text: "Option D" },
+    ],
+    answer: "B",
+  },
+  {
+    id: 16,
+    image: "PYQ/q(16).png",
+    options: [
+      { label: "A", text: "Option A" },
+      { label: "B", text: "Option B" },
+      { label: "C", text: "Option C" },
+      { label: "D", text: "Option D" },
+    ],
+    answer: "D",
+  },
+  {
+    id: 17,
+    image: "PYQ/q(17).png",
+    options: [
+      { label: "A", text: "Option A" },
+      { label: "B", text: "Option B" },
+      { label: "C", text: "Option C" },
+      { label: "D", text: "Option D" },
+    ],
+    answer: "B",
+  },
+  {
+    id: 18,
+    image: "PYQ/q(18).png",
+    options: [
+      { label: "A", text: "Option A" },
+      { label: "B", text: "Option B" },
+      { label: "C", text: "Option C" },
+      { label: "D", text: "Option D" },
+    ],
+    answer: "A",
+  },
+  {
+    id: 19,
+    image: "PYQ/q(19).png",
+    options: [
+      { label: "A", text: "Option A" },
+      { label: "B", text: "Option B" },
+      { label: "C", text: "Option C" },
+      { label: "D", text: "Option D" },
+    ],
+    answer: "A",
+  },
+  {
+    id: 20,
+    image: "PYQ/q(20).png",
+    options: [
+      { label: "A", text: "Option A" },
+      { label: "B", text: "Option B" },
+      { label: "C", text: "Option C" },
+      { label: "D", text: "Option D" },
+    ],
+    answer: "C",
+  },
+  {
+    id: 21,
+    image: "PYQ/q(21).png",
+    options: [
+      { label: "A", text: "Option A" },
+      { label: "B", text: "Option B" },
+      { label: "C", text: "Option C" },
+      { label: "D", text: "Option D" },
+    ],
+    answer: "B",
+  },
+  {
+    id: 22,
+    image: "PYQ/q(22).png",
+    options: [
+      { label: "A", text: "Option A" },
+      { label: "B", text: "Option B" },
+      { label: "C", text: "Option C" },
+      { label: "D", text: "Option D" },
+    ],
+    answer: "D",
+  },
+  {
+    id: 23,
+    image: "PYQ/q(23).png",
+    options: [
+      { label: "A", text: "Option A" },
+      { label: "B", text: "Option B" },
+      { label: "C", text: "Option C" },
+      { label: "D", text: "Option D" },
+    ],
+    answer: "C",
+  },
+  {
+    id: 24,
+    image: "PYQ/q(24).png",
+    options: [
+      { label: "A", text: "Option A" },
+      { label: "B", text: "Option B" },
+      { label: "C", text: "Option C" },
+      { label: "D", text: "Option D" },
+    ],
+    answer: "C",
+  },
+  {
+    id: 25,
+    image: "PYQ/q(25).png",
+    options: [
+      { label: "A", text: "Option A" },
+      { label: "B", text: "Option B" },
+      { label: "C", text: "Option C" },
+      { label: "D", text: "Option D" },
+    ],
+    answer: "C",
+  },
+  {
+    id: 26,
+    image: "PYQ/q(26).png",
+    options: [
+      { label: "A", text: "Option A" },
+      { label: "B", text: "Option B" },
+      { label: "C", text: "Option C" },
+      { label: "D", text: "Option D" },
+    ],
+    answer: "C",
+  },
+  {
+    id: 27,
+    image: "PYQ/q(27).png",
+    options: [
+      { label: "A", text: "Option A" },
+      { label: "B", text: "Option B" },
+      { label: "C", text: "Option C" },
+      { label: "D", text: "Option D" },
+    ],
+    answer: "C",
+  },
+  {
+    id: 28,
+    image: "PYQ/q(28).png",
+    options: [
+      { label: "A", text: "Option A" },
+      { label: "B", text: "Option B" },
+      { label: "C", text: "Option C" },
+      { label: "D", text: "Option D" },
+    ],
+    answer: "C",
+  },
+  {
+    id: 29,
+    image: "PYQ/q(29).png",
+    options: [
+      { label: "A", text: "Option A" },
+      { label: "B", text: "Option B" },
+      { label: "C", text: "Option C" },
+      { label: "D", text: "Option D" },
+    ],
+    answer: "C",
+  },
+  {
+    id: 30,
+    image: "PYQ/q(30).png",
+    options: [
+      { label: "A", text: "Option A" },
+      { label: "B", text: "Option B" },
+      { label: "C", text: "Option C" },
+      { label: "D", text: "Option D" },
+    ],
+    answer: "C",
+  },
+  {
+    id: 31,
+    image: "PYQ/q(31).png",
+    options: [
+      { label: "A", text: "Option A" },
+      { label: "B", text: "Option B" },
+      { label: "C", text: "Option C" },
+      { label: "D", text: "Option D" },
+    ],
+    answer: "C",
+  },
+  {
+    id: 32,
+    image: "PYQ/q(32).png",
+    options: [
+      { label: "A", text: "Option A" },
+      { label: "B", text: "Option B" },
+      { label: "C", text: "Option C" },
+      { label: "D", text: "Option D" },
+    ],
+    answer: "C",
+  },
+  {
+    id: 33,
+    image: "PYQ/q(33).png",
+    options: [
+      { label: "A", text: "Option A" },
+      { label: "B", text: "Option B" },
+      { label: "C", text: "Option C" },
+      { label: "D", text: "Option D" },
+    ],
+    answer: "C",
+  },
+  {
+    id: 34,
+    image: "PYQ/q(34).png",
+    options: [
+      { label: "A", text: "Option A" },
+      { label: "B", text: "Option B" },
+      { label: "C", text: "Option C" },
+      { label: "D", text: "Option D" },
+    ],
+    answer: "C",
+  },
+  {
+    id: 35,
+    image: "PYQ/q(35).png",
+    options: [
+      { label: "A", text: "Option A" },
+      { label: "B", text: "Option B" },
+      { label: "C", text: "Option C" },
+      { label: "D", text: "Option D" },
+    ],
+    answer: "C",
+  },
+  {
+    id: 36,
+    image: "PYQ/q(36).png",
+    options: [
+      { label: "A", text: "Option A" },
+      { label: "B", text: "Option B" },
+      { label: "C", text: "Option C" },
+      { label: "D", text: "Option D" },
+    ],
+    answer: "C",
+  },
+  {
+    id: 37,
+    image: "PYQ/q(37).png",
+    options: [
+      { label: "A", text: "Option A" },
+      { label: "B", text: "Option B" },
+      { label: "C", text: "Option C" },
+      { label: "D", text: "Option D" },
+    ],
+    answer: "C",
+  },
+  {
+    id: 38,
+    image: "PYQ/q(38).png",
+    options: [
+      { label: "A", text: "Option A" },
+      { label: "B", text: "Option B" },
+      { label: "C", text: "Option C" },
+      { label: "D", text: "Option D" },
+    ],
+    answer: "C",
+  },
+  {
+    id: 39,
+    image: "PYQ/q(39).png",
+    options: [
+      { label: "A", text: "Option A" },
+      { label: "B", text: "Option B" },
+      { label: "C", text: "Option C" },
+      { label: "D", text: "Option D" },
+    ],
+    answer: "C",
+  },
+  {
+    id: 40,
+    image: "PYQ/q(40).png",
+    options: [
+      { label: "A", text: "Option A" },
+      { label: "B", text: "Option B" },
+      { label: "C", text: "Option C" },
+      { label: "D", text: "Option D" },
+    ],
+    answer: "C",
+  },
+  {
+    id: 41,
+    image: "PYQ/q(41).png",
+    options: [
+      { label: "A", text: "Option A" },
+      { label: "B", text: "Option B" },
+      { label: "C", text: "Option C" },
+      { label: "D", text: "Option D" },
+    ],
+    answer: "C",
+  },
+  {
+    id: 42,
+    image: "PYQ/q(42).png",
+    options: [
+      { label: "A", text: "Option A" },
+      { label: "B", text: "Option B" },
+      { label: "C", text: "Option C" },
+      { label: "D", text: "Option D" },
+    ],
+    answer: "C",
+  },
+  {
+    id: 43,
+    image: "PYQ/q(43).png",
     options: [
       { label: "A", text: "Option A" },
       { label: "B", text: "Option B" },
@@ -315,6 +733,7 @@ document.getElementById("enlargedImg").addEventListener("click", function () {
     isZoomed = false;
   }
 });
+
 
 
 document.addEventListener("DOMContentLoaded", () => {
